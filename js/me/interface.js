@@ -32,18 +32,56 @@ function cam_zoomout(){
     solsystem.draw();
 }
 
+var count_skips = 1;
+
+function increase_skips(){
+    count_skips++;
+}
+
+function reduce_skips(){
+    if (count_skips > 1) count_skips--;
+}
+
+function start_with_skip(){
+    clearInterval(timer);
+    timer2 = setInterval(turns_with_skip_graphics, 40);
+}
+
+function stop_skipper(){
+    clearInterval(timer2);
+}
+
+function turns_with_skip_graphics(){
+    turn_skip = count_skips;
+    while (turn_skip != 0){
+        solsystem.calc_acceleration();
+        solsystem.move();
+        turn_skip --;
+    }
+    solsystem.draw();
+}
+
 function turn(){
     solsystem.calc_acceleration();
     solsystem.move();
     solsystem.draw();
 }
 
-var timer;
+var timer, timer2;
 
 function start(){
+    clearInterval(timer2);
     timer = setInterval(turn, 40);
 }
 
 function stop(){
     clearInterval(timer);
+}
+
+function fast_time(){
+    solsystem.timeScale *= 1.2;
+}
+
+function slow_time(){
+    solsystem.timeScale /= 1.2;
 }

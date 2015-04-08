@@ -16,11 +16,26 @@
     <input value="Уменьшить" type="button" onclick="cam_zoomout();">
 </div>
 <div id="time_control" style="background-color: beige">
-    Управление временем
+    Управление временем (если вам кажется, что ничего не движется - приблизьте меркурий)
     <input value="Сделать 1 ход" type="button" onclick="turn();">
     <input value="Включить движение" type="button" onclick="start();">
     <input value="Выключить движение" type="button" onclick="stop();">
+    <input value="Ускорить время" type="button" onclick="fast_time();">
+    <input value="Замедлить время" type="button" onclick="slow_time();">
 </div>
+<div id="warning" style="background-color: red">Внимание, большом масштабе времени, увеличивается погрешность в рассчете
+положения. Поэтому, если значение масштаба времени очень велико, то возможны неожиданные схождения с орбит у достаточно
+быстро двигающихся тел с низкой орбитой. Чтобы этого избежать РЕКОМЕНДУЮ просто пропускать кадры отрисовки (управление
+ниже) - это не так уменьшает время вычислений, но зато не увеличивает погрешность</div>
+<div id="skip_frames" style="background-color: lavender">
+    Пропуск кадров (масштаб времени все равно будет действовать, но можете его уменьшить вручную):<br>
+    <input value="Сделать 1 ход" type="button" onclick="turns_with_skip_graphics();">
+    <input value="Включить движение" type="button" onclick="start_with_skip();">
+    <input value="Выключить движение" type="button" onclick="stop_skipper();">
+    <input value="Пропускать больше кадров" type="button" onclick="increase_skips();">
+    <input value="Пропускать меньше кадров" type="button" onclick="reduce_skips();">
+</div>
+При масштабе времени = 1, один цикл равен примерно 2 минутам реального времени.
 <script src="js/me/mathematics.js"></script>
 <script src="js/me/painting.js"></script>
 <script src="js/me/planets.js"></script>
