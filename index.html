@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title>Free fall</title>
+</head>
+<body>
+<canvas id="screen" width="800" height="600">You need update browser</canvas>
+<div id="camera_control" style="background-color: skyblue">
+    Управление камерой
+    <input value="Вверх" type="button" onclick="cam_up();">
+    <input value="Вниз" type="button" onclick="cam_down();">
+    <input value="Влево" type="button" onclick="cam_left();">
+    <input value="Вправо" type="button" onclick="cam_right();">
+    <input value="Увеличить" type="button" onclick="cam_zoomin();">
+    <input value="Уменьшить" type="button" onclick="cam_zoomout();">
+</div>
+<div id="time_control" style="background-color: beige">
+    Управление временем
+    <input value="Сделать 1 ход" type="button" onclick="turn();">
+    <input value="Включить движение" type="button" onclick="start();">
+    <input value="Выключить движение" type="button" onclick="stop();">
+</div>
+<script src="js/me/mathematics.js"></script>
+<script src="js/me/painting.js"></script>
+<script src="js/me/planets.js"></script>
+<script src="js/me/solarsystem.js"></script>
+<script src="js/me/interface.js"></script>
+<script src="js/me/init.js"></script>
+</body>
+</html>
