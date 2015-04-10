@@ -22,28 +22,28 @@ function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmos
 
     this.draw_speed = function(focusView_x, focusView_y, scale){
         context.lineWidth = 1;
-        drawLine((this.X + focusView_x) * scale + canvas.width / 2,
+        drawLine((this.X - focusView_x) * scale + canvas.width / 2,
             (this.Y - focusView_y) * scale + canvas.height / 2,
-            (this.X + this.speedX + focusView_x) * scale + canvas.width / 2,
+            (this.X + this.speedX - focusView_x) * scale + canvas.width / 2,
             (this.Y - this.speedY - focusView_y) * scale + canvas.height / 2,
             this.atmosphere_color);
     };
 
     this.draw_name = function (focusView_x, focusView_y, scale) {
-        drawText((this.X + this.radius + focusView_x) * scale + canvas.width / 2,
+        drawText((this.X + this.radius - focusView_x) * scale + canvas.width / 2,
             (this.Y - this.radius - focusView_y) * scale + canvas.height / 2,
             this.name, this.color, 10);
     };
 
     // 1. За счет такой реализации условный переход для выбора, что отрисовывать удалось вынести из этой функции:
     this.__drawBorderedCircle__ = function (focusView_x, focusView_y, scale){
-        drawBorderedCircle((this.X + focusView_x) * scale + canvas.width / 2,
+        drawBorderedCircle((this.X - focusView_x) * scale + canvas.width / 2,
             (this.Y - focusView_y) * scale + canvas.height / 2,
             this.radius * scale, this.color, this.atmosphere_width * scale, this.atmosphere_color);
     };
 
     this.__drawCross__ = function (focusView_x, focusView_y, scale){
-        drawCross((this.X + focusView_x) * scale + canvas.width / 2, (this.Y - focusView_y) * scale + canvas.height / 2,
+        drawCross((this.X - focusView_x) * scale + canvas.width / 2, (this.Y - focusView_y) * scale + canvas.height / 2,
             10, this.color);
     };
 
@@ -54,8 +54,8 @@ function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmos
         var dVx = 0, dVy = 0;
         for (var i = 0; i != objs.length; i += 1){
             if (i != my_index){
-                dVx += ((objs[i].mass / Math.pow(distance(this, objs[i]), 2)) * (objs[i].X - this.X)) / distance(this, objs[i])
-                dVy += ((objs[i].mass / Math.pow(distance(this, objs[i]), 2)) * (objs[i].Y - this.Y)) / distance(this, objs[i])
+                dVx += ((objs[i].mass / Math.pow(distance(this, objs[i]), 2)) * (objs[i].X - this.X)) / distance(this, objs[i]);
+                dVy += ((objs[i].mass / Math.pow(distance(this, objs[i]), 2)) * (objs[i].Y - this.Y)) / distance(this, objs[i]);
             }
         }
         this.speedX += dVx * timescale;

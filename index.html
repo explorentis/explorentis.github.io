@@ -14,11 +14,14 @@
             <input value="Вверх" type="button" class="short_name" onclick="cam_up();">
             <input value="Влево" type="button" class="short_name" onclick="cam_left();">
             <input value="Увеличить" type="button" class="avg_name" onclick="cam_zoomin();">
+            Свой масштаб:
+            <input value="Готово" type="button" class="short_name" onclick="set_lenscale();">
         </div>
         <div>
             <input value="Вниз" type="button" class="short_name"  onclick="cam_down();">
             <input value="Вправо" type="button" class="short_name"  onclick="cam_right();">
             <input value="Уменьшить" type="button" class="avg_name" onclick="cam_zoomout();">
+            <input type="text" id="lenscale">
         </div>
     </div>
     <div id="time_control">
@@ -35,8 +38,11 @@
             <input value="Пропускать меньше кадров" class="long_name" type="button" onclick="reduce_skips();">
             <input value="Замедлить время" type="button" class="med_name" onclick="slow_time();">
         </div>
+        Сколько кадров пропускать:
+        <input type="text" id="skip_frames" class="short_name">
+        <input value="Готово" type="button" class="short_name" onclick="set_skip_frames();">
     </div>
-    <div id="warning">Внимание, при большом масштабе времени, увеличивается погрешность в рассчете
+    <div id="warning">Про кнопку ускорения времени: ВНИМАНИЕ, при большом масштабе времени, увеличивается погрешность в рассчете
         положения. Поэтому, если значение масштаба времени очень велико, то возможны неожиданные схождения с орбит у достаточно
         быстро двигающихся тел с низкой орбитой. Чтобы этого избежать РЕКОМЕНДУЮ просто пропускать кадры отрисовки - это не
         так сильно уменьшает время вычислений, но зато не увеличивает погрешность

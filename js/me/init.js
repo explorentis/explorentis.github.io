@@ -19,7 +19,6 @@ solsystem = new SolarSystem(/*   X, Y, радиус,  масса, Vx, Vy */
     ]);
 //solsystem.zoom(0.00005);
 //count_skips = 500;
-solsystem.centerX = solsystem.bodies[3].X;
-solsystem.centerY = solsystem.bodies[3].Y;
+//solsystem.focus(solsystem.bodies[3]);
 solsystem.zoom(0.5);
 solsystem.draw();

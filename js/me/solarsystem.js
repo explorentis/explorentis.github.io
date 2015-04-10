@@ -17,16 +17,20 @@ function SolarSystem(bodies){
         this.cycle_num += 1;
     };
 
+    this.focus = function (x,y) {
+        this.centerX = x;
+        this.centerY = y;
+    };
+
     this.draw = function(){
         clearScreen();
+        this.focus(this.bodies[3].X, this.bodies[3].Y);
         for (var i = 0; i != this.bodies.length; i += 1){
             this.bodies[i].draw(this.centerX, this.centerY, this.lenScale);
             this.bodies[i].draw_speed(this.centerX, this.centerY, this.lenScale);
             this.bodies[i].draw_name(this.centerX, this.centerY, this.lenScale);
         }
         drawText(0, 15, "timescale: " + this.timeScale, 'Green', 10);
-        drawText(0, 30, "lenscale:  " + this.lenScale, 'Green', 10);
-        drawText(0, 45, "skipframe:  " + count_skips, 'Green', 10);
         drawText(0, 60, "number of cycles:  " + this.cycle_num, 'Green', 10);
     };
 
