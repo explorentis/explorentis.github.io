@@ -71,10 +71,14 @@ function startstop(){
 
 function fast_time(){
     solsystem.timeScale *= 1.2;
+    if (solsystem.timeScale > 10) document.getElementById('warning').setAttribute('class', 'showed');
+    solsystem.draw();
 }
 
 function slow_time(){
     solsystem.timeScale /= 1.2;
+    if (solsystem.timeScale > 10) document.getElementById('warning').setAttribute('class', 'hidden');
+    solsystem.draw();
 }
 
 function set_lenscale(){

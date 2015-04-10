@@ -1,6 +1,10 @@
+#screen {
+    width: 60% !important;
+}
+
 #control {
     float: right;
-    width: 35%;
+    width: 40%;
 }
 
 #camera_control {
@@ -34,4 +38,19 @@
 .long_name {
     margin-bottom: 2px;
     width: 240px;
+}
+
+.hidden {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity .5s, max-height .5s;
+    _display: none;
+}
+
+.showed {
+    max-height: 100%;
+    transition: opacity .5s, max-height .5s;
+    opacity: 1;
+    _display: block;
 }
