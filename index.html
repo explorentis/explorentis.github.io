@@ -3,39 +3,47 @@
 <head lang="ru">
     <meta charset="UTF-8">
     <title>Free fall</title>
+    <link href="css/main.css" rel="stylesheet" />
 </head>
 <body>
 <canvas id="screen" width="800" height="600">You need update browser</canvas>
-<div id="camera_control" style="background-color: skyblue">
-    Управление камерой
-    <input value="Вверх" type="button" onclick="cam_up();">
-    <input value="Вниз" type="button" onclick="cam_down();">
-    <input value="Влево" type="button" onclick="cam_left();">
-    <input value="Вправо" type="button" onclick="cam_right();">
-    <input value="Увеличить" type="button" onclick="cam_zoomin();">
-    <input value="Уменьшить" type="button" onclick="cam_zoomout();">
-</div>
-<div id="time_control" style="background-color: beige">
-    Управление временем (если вам кажется, что ничего не движется - приблизьте меркурий)
-    <input value="Сделать 1 ход" type="button" onclick="turn();">
-    <input value="Включить движение" type="button" onclick="start();">
-    <input value="Выключить движение" type="button" onclick="stop();">
-    <input value="Ускорить время" type="button" onclick="fast_time();">
-    <input value="Замедлить время" type="button" onclick="slow_time();">
-</div>
-<div id="warning" style="background-color: red">Внимание, большом масштабе времени, увеличивается погрешность в рассчете
-положения. Поэтому, если значение масштаба времени очень велико, то возможны неожиданные схождения с орбит у достаточно
-быстро двигающихся тел с низкой орбитой. Чтобы этого избежать РЕКОМЕНДУЮ просто пропускать кадры отрисовки (управление
-ниже) - это не так уменьшает время вычислений, но зато не увеличивает погрешность</div>
-<div id="skip_frames" style="background-color: lavender">
-    Пропуск кадров (масштаб времени все равно будет действовать, но можете его уменьшить вручную):<br>
-    <input value="Сделать 1 ход" type="button" onclick="turns_with_skip_graphics();">
-    <input value="Включить движение" type="button" onclick="start_with_skip();">
-    <input value="Выключить движение" type="button" onclick="stop_skipper();">
-    <input value="Пропускать больше кадров" type="button" onclick="increase_skips();">
-    <input value="Пропускать меньше кадров" type="button" onclick="reduce_skips();">
+<div id="control">
+    <div id="camera_control">
+        <div>Управление камерой</div>
+        <div>
+            <input value="Вверх" type="button" class="short_name" onclick="cam_up();">
+            <input value="Влево" type="button" class="short_name" onclick="cam_left();">
+            <input value="Увеличить" type="button" class="avg_name" onclick="cam_zoomin();">
+        </div>
+        <div>
+            <input value="Вниз" type="button" class="short_name"  onclick="cam_down();">
+            <input value="Вправо" type="button" class="short_name"  onclick="cam_right();">
+            <input value="Уменьшить" type="button" class="avg_name" onclick="cam_zoomout();">
+        </div>
+    </div>
+    <div id="time_control">
+        <div>Управление временем (если вам кажется, что ничего не движется - приблизьте меркурий)</div>
+        <div>
+            <input value="Сделать 1 ход" type="button" class="med_name" onclick="turns_with_skip_graphics();">
+            <input value="Включить/выключить движение" style="font-weight: bold;" class="long_name"  type="button" onclick="startstop();">
+        </div>
+        <div>
+            <input value="Пропускать больше кадров" class="long_name" type="button" onclick="increase_skips();">
+            <input value="Ускорить время" type="button" class="med_name" onclick="fast_time();">
+        </div>
+        <div>
+            <input value="Пропускать меньше кадров" class="long_name" type="button" onclick="reduce_skips();">
+            <input value="Замедлить время" type="button" class="med_name" onclick="slow_time();">
+        </div>
+    </div>
+    <div id="warning">Внимание, при большом масштабе времени, увеличивается погрешность в рассчете
+        положения. Поэтому, если значение масштаба времени очень велико, то возможны неожиданные схождения с орбит у достаточно
+        быстро двигающихся тел с низкой орбитой. Чтобы этого избежать РЕКОМЕНДУЮ просто пропускать кадры отрисовки - это не
+        так сильно уменьшает время вычислений, но зато не увеличивает погрешность
+    </div>
 </div>
 При масштабе времени = 1, один цикл равен примерно 2 минутам реального времени.
+
 <script src="js/me/mathematics.js"></script>
 <script src="js/me/painting.js"></script>
 <script src="js/me/planets.js"></script>

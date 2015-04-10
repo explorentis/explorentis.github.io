@@ -1,0 +1,37 @@
+#control {
+    float: right;
+    width: 35%;
+}
+
+#camera_control {
+    background-color: skyblue;
+}
+
+#time_control {
+    background-color: beige;
+}
+
+#warning {
+    background-color: red;
+}
+
+.short_name {
+    margin-bottom: 3px;
+    margin-left: 6px;
+    width: 60px;
+}
+
+.avg_name {
+    margin-left: 5px;
+    width: 90px;
+}
+
+.med_name {
+    margin-bottom: 2px;
+    width: 125px;
+}
+
+.long_name {
+    margin-bottom: 2px;
+    width: 240px;
+}

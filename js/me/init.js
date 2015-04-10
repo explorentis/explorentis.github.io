@@ -14,7 +14,12 @@ solsystem = new SolarSystem(/*   X, Y, радиус,  масса, Vx, Vy */
         new Planet('Сатурн',-1352600, 0,  120.536 / 2,  568,   0, -calc_perihelion_speed(  1988920, 0.057,1514500), 'Wheat', 0, 'White'),
         new Planet('Уран',    0, 2741300,  51.118 / 2,   86.8, calc_perihelion_speed(1988920,0.046,3003600), 0, 'Cyan', 0, 'Cyan'),
         new Planet('Нептун',  0,-4444500,  49.528 / 2,  102,   calc_perihelion_speed(1988920,0.011,4545700), 0, 'Blue', 0, 'Cyan'),
-        new Planet('Плутон',  4435000, 0, 2.390 / 2, 0.0125, 0, calc_perihelion_speed(1988920,0.244,7304300), 0, 'Grey', 0, 'Grey')]);
-solsystem.zoom(0.00005);
-count_skips = 500;
+        new Planet('Плутон',  4435000, 0, 2.390 / 2, 0.0125, 0, calc_perihelion_speed(1988920,0.244,7304300), 'Grey', 0, 'Grey'),
+        new Planet('Луна', 0, 147100 + 363, 3.475 / 2, 0.073,  calc_perihelion_speed(1988920, 0.017, 152100) + calc_perihelion_speed(5.97,0.055,406), 0, 'Yellow', 0, 'Grey')
+    ]);
+//solsystem.zoom(0.00005);
+//count_skips = 500;
+solsystem.centerX = solsystem.bodies[3].X;
+solsystem.centerY = solsystem.bodies[3].Y;
+solsystem.zoom(0.5);
 solsystem.draw();
