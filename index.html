@@ -14,7 +14,7 @@
             <input value="Вверх" type="button" class="short_name" onclick="cam_up();">
             <input value="Влево" type="button" class="short_name" onclick="cam_left();">
             <input value="Увеличить" type="button" class="avg_name" onclick="cam_zoomin();">
-            Свой масштаб:
+            <label for="lenscale">Свой масштаб:</label>
             <input value="Готово" type="button" class="short_name" onclick="set_lenscale();">
         </div>
         <div>
@@ -31,24 +31,36 @@
             <input value="Включить/выключить движение" style="font-weight: bold;" class="long_name"  type="button" onclick="startstop();">
         </div>
         <div>
+            <input value="Ускорить время" type="button" class="med_name bad_button" onclick="fast_time();">
             <input value="Пропускать больше кадров" class="long_name" type="button" onclick="increase_skips();">
-            <input value="Ускорить время" type="button" class="med_name" onclick="fast_time();">
         </div>
         <div>
+            <input value="Замедлить время" type="button" class="med_name  bad_button" onclick="slow_time();">
             <input value="Пропускать меньше кадров" class="long_name" type="button" onclick="reduce_skips();">
-            <input value="Замедлить время" type="button" class="med_name" onclick="slow_time();">
         </div>
-        Сколько кадров пропускать:
-        <input type="text" id="skip_frames" class="short_name">
-        <input value="Готово" type="button" class="short_name" onclick="set_skip_frames();">
+        <div>
+            <label for="skip_frames">Сколько кадров пропускать:</label>
+            <input type="text" id="skip_frames" class="short_name">
+            <input value="Готово" type="button" class="short_name" onclick="set_skip_frames();">
+        </div>
+        <div>
+            <label for="timescale">Масштаб времени</label>
+            <input type="text" id="timescale">
+        </div>
     </div>
     <div id="warning" class="hidden">ВНИМАНИЕ, при большом масштабе времени, увеличивается погрешность в рассчете
         положения. Поэтому, если значение масштаба времени очень велико, то возможны неожиданные схождения с орбит у достаточно
         быстро двигающихся тел с низкой орбитой. Чтобы этого избежать РЕКОМЕНДУЮ просто пропускать кадры отрисовки - это не
         так сильно уменьшает время вычислений, но зато не увеличивает погрешность. Хотя если объекты далеко друг от друга, то в использовании ускорения времени ничего плохого - оно может быть даже полезно (все равно ошибка будет мала) .
     </div>
+    <div id="focus_control">
+        <div>Управление фокусом камеры и получением информации об объектах</div>
+        <div><input type="button" value="Включить/отключить фокус" onclick="turn_focus();"></div>
+        <input type="button" value="Предыдущий" onclick="focus_previous_body();">
+        <input type="button" value="Следующий" onclick="focus_next_body();">
+    </div>
 </div>
-При масштабе времени = 1, один цикл равен примерно 2 минутам реального времени.
+При масштабе времени = 1, один цикл равен примерно 2 минутам реального времени. Значит за один ход проходит: количество_пропускаемых_кадров * 2 минуты
 
 <script src="js/me/mathematics.js"></script>
 <script src="js/me/painting.js"></script>

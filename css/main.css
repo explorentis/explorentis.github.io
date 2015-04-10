@@ -54,3 +54,11 @@
     opacity: 1;
     _display: block;
 }
+
+#focus_control {
+    background-color: mintcream;
+}
+
+.bad_button {
+    color: gray;
+}

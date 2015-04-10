@@ -72,12 +72,14 @@ function startstop(){
 function fast_time(){
     solsystem.timeScale *= 1.2;
     if (solsystem.timeScale > 10) document.getElementById('warning').setAttribute('class', 'showed');
+    document.getElementById('timescale').setAttribute('value', solsystem.timeScale.toString());
     solsystem.draw();
 }
 
 function slow_time(){
     solsystem.timeScale /= 1.2;
     if (solsystem.timeScale > 10) document.getElementById('warning').setAttribute('class', 'hidden');
+    document.getElementById('timescale').setAttribute('value', solsystem.timeScale.toString());
     solsystem.draw();
 }
 
@@ -88,5 +90,33 @@ function set_lenscale(){
 
 function set_skip_frames(){
     count_skips = parseInt(document.getElementById('skip_frames').value, 10);
+    solsystem.draw();
+}
+
+function turn_focus(){
+    if (solsystem.focus == solsystem.__focus__){
+        solsystem.focus = function(){};
+    }else{
+        solsystem.focus = solsystem.__focus__;
+    }
+}
+
+function focus_previous_body(){
+    if (solsystem.focus_object == 0){
+        solsystem.focus_object = solsystem.bodies.length - 1;
+    }else{
+        solsystem.focus_object--;
+    }
+    solsystem.focus();
+    solsystem.draw();
+}
+
+function focus_next_body(){
+    if (solsystem.focus_object == solsystem.bodies.length - 1){
+        solsystem.focus_object = 0;
+    }else {
+        solsystem.focus_object++;
+    }
+    solsystem.focus();
     solsystem.draw();
 }

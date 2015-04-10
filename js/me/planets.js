@@ -3,10 +3,11 @@
  */
 
 /*Vx, Vy - скорости*/
-function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmosphere_color){
+function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmosphere_color, type){
     this.name = name;
     this.X = X;
     this.Y = Y;
+    this.type = type;
     this.radius = radius;
     this.mass = mass;
     this.speedX = Vx;
