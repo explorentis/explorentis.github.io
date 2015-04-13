@@ -6,6 +6,10 @@
     <link href="css/main.css" rel="stylesheet" />
 </head>
 <body>
+<div id="mainmenu">
+    <input value="Наша солнечная система" type="button" class="long_name" onclick="standart_solar();">
+    <input value="Солнечная система с астероидами" type="button" class="long_name" onclick="space_dust(100, -5000000, -5000000, 5000000, 5000000, 10, 10, 10, 10, 'астероид');">
+</div>
 <canvas id="screen" width="800" height="600" >You need update browser</canvas>
 <div id="control">
     <div id="camera_control">
@@ -55,9 +59,15 @@
     </div>
     <div id="focus_control">
         <div>Управление фокусом камеры и получением информации об объектах</div>
-        <div><input type="button" value="Включить/отключить фокус" onclick="turn_focus();"></div>
-        <input type="button" value="Предыдущий" onclick="focus_previous_body();">
-        <input type="button" value="Следующий" onclick="focus_next_body();">
+        <div><input type="button" value="Включить/отключить фокус" onclick="turn_focus();">
+            <input type="button" value="Предыдущий" onclick="focus_previous_body();">
+            <input type="button" value="Следующий" onclick="focus_next_body();">
+        </div>
+        <div>
+            <label for="find">Найти объект:</label>
+            <input type="text" id="find" class="avg_name">
+            <input value="Поиск" type="button" class="short_name" onclick="find();">
+        </div>
     </div>
 </div>
 При масштабе времени = 1, один цикл равен примерно 2 минутам реального времени. Значит за один ход проходит: количество_пропускаемых_кадров * 2 минуты

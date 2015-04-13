@@ -120,3 +120,11 @@ function focus_next_body(){
     solsystem.focus();
     solsystem.draw();
 }
+
+function find(){
+    var find_str = document.getElementById('find').value;
+    for (var i = 0; i != solsystem.bodies.length; i++){
+        if (find_str == solsystem.bodies[i].name) solsystem.focus_object = i;
+    }
+    solsystem.draw();
+}

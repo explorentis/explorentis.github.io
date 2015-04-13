@@ -27,3 +27,17 @@ function calc_new_radius(obj1, obj2){
     }
     return obj1.radius * obj2.radius * Math.pow((obj1.mass + obj2.mass) * (obj1.mass + obj2.mass) / (obj1.mass * obj1.mass * Math.pow(obj2.radius, 3) + obj2.mass * obj2.mass * Math.pow(obj1.radius, 3)), 1/3)
 }
+
+// http://javascript.ru/Math.random
+// использование Math.round() даст неравномерное распределение!
+function getRandomInt(min, max)
+{
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// http://javascript.ru/Math.random
+function getRandomArbitary(min, max)
+{
+    return Math.random() * (max - min) + min;
+}
+

@@ -9,7 +9,8 @@ function SolarSystem(bodies){
     this.centerY = 0;
     this.bodies = bodies;
     this.cycle_num = 0;
-    this.focus_object = 3;
+    this.focus_object = 0;
+    this.last_impact_date = 0;
 
     this.move = function(){
         for (var i = 0; i != this.bodies.length; i += 1){
@@ -43,7 +44,8 @@ function SolarSystem(bodies){
         }
         drawText(5, 15, "Масштаб времени: " + this.timeScale, 'Green', 10);
         drawText(5, 30, "Количество пройденных циклов:  " + this.cycle_num, 'Green', 10);
-        this.show_info(this.bodies[this.focus_object] ,60);
+        drawText(5, 45, "Последний раз столкновение было:  " + this.last_impact_date, 'Green', 10);
+        this.show_info(this.bodies[this.focus_object], 75);
     };
 
     this.calc_acceleration = function(){
@@ -52,6 +54,7 @@ function SolarSystem(bodies){
             if (killed_planet != -1){
                 console.log(killed_planet);
                 if (this.focus_object == this.bodies.length - 1){this.focus_object--;}
+                this.last_impact_date = this.cycle_num;
                 this.bodies.splice(killed_planet, 1);
                 i--;
             }
