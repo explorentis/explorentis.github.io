@@ -51,15 +51,37 @@ function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmos
     this.draw = this.__drawBorderedCircle__;
     // 1.
 
+    this.impact = function(obj){
+        console.log(this.radius, calc_new_radius(this, obj));
+        this.radius = calc_new_radius(this, obj);
+        if ((this.mass == 0) && (obj.mass == 0)){
+            this.speedX += obj.speedX;
+            this.speedY += obj.speedY;
+        } else {
+            this.speedX = (this.mass * this.speedX + obj.mass * obj.speedX) / (this.mass + obj.mass);
+            this.speedY = (this.mass * this.speedY + obj.mass * obj.speedY) / (this.mass + obj.mass);
+        }
+        this.mass += obj.mass;
+
+    };
+
+    // if impact - return index of planet who was stroke.
     this.calc_acceleration = function(objs, my_index, timescale){
-        var dVx = 0, dVy = 0;
+        var dVx = 0, dVy = 0, dist;
         for (var i = 0; i != objs.length; i += 1){
             if (i != my_index){
-                dVx += ((objs[i].mass / Math.pow(distance(this, objs[i]), 2)) * (objs[i].X - this.X)) / distance(this, objs[i]);
-                dVy += ((objs[i].mass / Math.pow(distance(this, objs[i]), 2)) * (objs[i].Y - this.Y)) / distance(this, objs[i]);
+                dist = distance(this, objs[i]);
+                dVx += ((objs[i].mass / Math.pow(dist, 2)) * (objs[i].X - this.X)) / dist;
+                dVy += ((objs[i].mass / Math.pow(dist, 2)) * (objs[i].Y - this.Y)) / dist;
+                if (dist < this.radius + objs[i].radius) {
+                    this.impact(objs[i]);
+                    return i;
+                }
             }
         }
         this.speedX += dVx * timescale;
         this.speedY -= dVy * timescale;
+        return -1;
     };
+
 }

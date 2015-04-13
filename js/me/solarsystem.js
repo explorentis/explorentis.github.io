@@ -48,7 +48,13 @@ function SolarSystem(bodies){
 
     this.calc_acceleration = function(){
         for (var i = 0; i != this.bodies.length; i += 1){
-            this.bodies[i].calc_acceleration(this.bodies, i, this.timeScale);
+            killed_planet = this.bodies[i].calc_acceleration(this.bodies, i, this.timeScale);
+            if (killed_planet != -1){
+                console.log(killed_planet);
+                if (this.focus_object == this.bodies.length - 1){this.focus_object--;}
+                this.bodies.splice(killed_planet, 1);
+                i--;
+            }
         }
     };
 
