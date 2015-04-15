@@ -34,7 +34,7 @@ function SolarSystem(bodies){
         drawText(5, y_for_1 += 15, "Масса: " + (obj.mass * mass_suffix) + ' кг', 'Green', 10);
 
         drawText(5, y_for_1 += 15, "Ускорение свободного падения: " + obj.g + ' м/с^2');
-        drawText(5, y_for_1, "Плотность планеты: " + obj.density + ' кг/м^3');
+        drawText(5, y_for_1 += 15, "Плотность планеты: " + obj.density + ' кг/м^3');
     };
 
     this.draw = function(){
