@@ -15,6 +15,8 @@ function calc_perihelion_speed(mass, e, aphelion){
     return Math.sqrt(mass * (1 + e)/(aphelion * (1 - e)))
 }
 
+G = 6.6742 * Math.pow(10, -11);
+
 /**
  * Вычисление радиуса новой планеты после соударения (см. calculations/avg_density.odt)
  * */

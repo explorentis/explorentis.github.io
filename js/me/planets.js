@@ -3,6 +3,9 @@
  */
 
 /*Vx, Vy - скорости*/
+distance_suffix = Math.pow(10, 6);
+mass_suffix = Math.pow(10, 24);
+
 function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmosphere_color, type){
     this.name = name;
     this.X = X;
@@ -15,6 +18,17 @@ function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmos
     this.color = color;
     this.atmosphere_width = atmosphere_width;
     this.atmosphere_color = atmosphere_color;
+    // Блок общей информации об объекте
+    this.receive_info = function (){
+        this.g = this.mass * mass_suffix * G / Math.pow(this.radius * distance_suffix, 2);
+        this.density = this.mass * mass_suffix / ((4 / 3) * Math.PI * Math.pow(this.radius * distance_suffix, 3))
+    };
+    // ускорение свободного падения
+    this.g = 0;
+    this.density = 0;
+
+    this.receive_info();
+    //.
 
     this.move = function (timescale){
         this.X += this.speedX * timescale;
@@ -62,7 +76,7 @@ function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmos
             this.speedY = (this.mass * this.speedY + obj.mass * obj.speedY) / (this.mass + obj.mass);
         }
         this.mass += obj.mass;
-
+        this.receive_info();
     };
 
     // if impact - return index of planet who was stroke.

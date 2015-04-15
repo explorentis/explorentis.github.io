@@ -27,11 +27,14 @@ function SolarSystem(bodies){
     this.focus = this.__focus__;
 
     this.show_info = function(obj, y_for_1){
-        drawText(5, y_for_1, "Название объекта: " + obj.type + ' ' + obj.name, 'Green', 10);
-        drawText(5, y_for_1 + 15, "Координаты: " + obj.X + 'x' + obj.Y, 'Green', 10);
-        drawText(5, y_for_1 + 30, "Скорость: x=" + obj.speedX + ', y=' + obj.speedY, 'Green', 10);
-        drawText(5, y_for_1 + 45, "Радиус: " + obj.radius, 'Green', 10);
-        drawText(5, y_for_1 + 60, "Масса: " + obj.mass, 'Green', 10);
+        drawText(5, y_for_1 += 15, "Название объекта: " + obj.type + ' ' + obj.name, 'Green', 10);
+        drawText(5, y_for_1 += 15, "Координаты: x=" + (obj.X * distance_suffix) + 'м, y=' + (obj.Y * distance_suffix) + 'м', 'Green', 10);
+        drawText(5, y_for_1 += 15, "Скорость: x=" + (obj.speedX * distance_suffix) + 'м, y=' + (obj.speedY * distance_suffix) + 'м', 'Green', 10);
+        drawText(5, y_for_1 += 15, "Радиус: " + (obj.radius * distance_suffix) + 'м', 'Green', 10);
+        drawText(5, y_for_1 += 15, "Масса: " + (obj.mass * mass_suffix) + ' кг', 'Green', 10);
+
+        drawText(5, y_for_1 += 15, "Ускорение свободного падения: " + obj.g + ' м/с^2');
+        drawText(5, y_for_1, "Плотность планеты: " + obj.density + ' кг/м^3');
     };
 
     this.draw = function(){
@@ -45,6 +48,7 @@ function SolarSystem(bodies){
         drawText(5, 15, "Масштаб времени: " + this.timeScale, 'Green', 10);
         drawText(5, 30, "Количество пройденных циклов:  " + this.cycle_num, 'Green', 10);
         drawText(5, 45, "Последний раз столкновение было:  " + this.last_impact_date, 'Green', 10);
+        drawText(5, 60, "Количество пропускаемых кадров:" + count_skips);
         this.show_info(this.bodies[this.focus_object], 75);
     };
 
