@@ -44,10 +44,18 @@ function Planet(name, X, Y, radius, mass, Vx, Vy, color, atmosphere_width, atmos
             this.atmosphere_color);
     };
 
+    this.image = mkTextCanvas(this.name, this.color, 10);
+
     this.draw_name = function (focusView_x, focusView_y, scale) {
-        drawText((this.X + this.radius - focusView_x) * scale + canvas.width / 2,
-            (this.Y - this.radius - focusView_y) * scale + canvas.height / 2,
-            this.name, this.color, 10);
+        // оптимизированное
+        context.drawImage(this.image, (this.X + this.radius - focusView_x) * scale + canvas.width / 2,
+            (this.Y - this.radius - focusView_y) * scale + canvas.height / 2);
+
+        // не оптимизированое
+        //drawText((this.X + this.radius - focusView_x) * scale + canvas.width / 2,
+        //    (this.Y - this.radius - focusView_y) * scale + canvas.height / 2,
+        //    this.name, this.color, 10);
+
     };
 
     // 1. За счет такой реализации условный переход для выбора, что отрисовывать удалось вынести из этой функции:

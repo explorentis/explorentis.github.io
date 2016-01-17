@@ -50,12 +50,16 @@ function reduce_skips(){
 
 function turns_with_skip_graphics(){
     turn_skip = count_skips;
+    //console.time('test calculations');
     while (turn_skip != 0){
         solsystem.calc_acceleration();
         solsystem.move();
         turn_skip --;
     }
+    //console.timeEnd('test calculations');
+    //console.time('test drawing');
     solsystem.draw();
+    //console.timeEnd('test drawing');
 }
 
 var timer;

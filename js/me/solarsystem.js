@@ -11,6 +11,7 @@ function SolarSystem(bodies){
     this.cycle_num = 0;
     this.focus_object = 0;
     this.last_impact_date = 0;
+    this.info_width = 0;
 
     this.move = function(){
         for (var i = 0; i != this.bodies.length; i += 1){
@@ -26,15 +27,44 @@ function SolarSystem(bodies){
 
     this.focus = this.__focus__;
 
-    this.show_info = function(obj, y_for_1){
-        drawText(5, y_for_1 += 15, "Название объекта: " + obj.type + ' ' + obj.name, 'Green', 10);
-        drawText(5, y_for_1 += 15, "Координаты: x=" + (obj.X * distance_suffix) + 'м, y=' + (obj.Y * distance_suffix) + 'м', 'Green', 10);
-        drawText(5, y_for_1 += 15, "Скорость: x=" + (obj.speedX * distance_suffix) + 'м, y=' + (obj.speedY * distance_suffix) + 'м', 'Green', 10);
-        drawText(5, y_for_1 += 15, "Радиус: " + (obj.radius * distance_suffix) + 'м', 'Green', 10);
-        drawText(5, y_for_1 += 15, "Масса: " + (obj.mass * mass_suffix) + ' кг', 'Green', 10);
+    this.mk_info_image = function (color, font_size) {
+        // создаем подписи:
+        var texts = [
+            "Масштаб времени: ", "Количество пройденных циклов:  ", "Последний раз столкновение было:  ",
+            "Количество пропускаемых кадров:", " ", "Название объекта: ", "Координаты: x=", "Скорость: x=",
+            "Радиус: ", "Масса: ", "Ускорение свободного падения: ", "Плотность планеты: "
+        ];
+        var texts_images = [];
+        var max_width = 0;
+        for (var i = 0; i != texts.length; i++){
+            texts_images[i] = mkTextCanvas(texts[i], color, font_size);
+            if (texts_images[i].width > max_width) max_width = texts_images[i].width;
+        };
+        var info_canvas = document.createElement('canvas');
+        var info_context = info_canvas.getContext('2d');
+        info_canvas.width = max_width;
+        info_canvas.height = font_size + (texts.length - 1) * font_size * 2;
 
-        drawText(5, y_for_1 += 15, "Ускорение свободного падения: " + obj.g + ' м/с^2');
-        drawText(5, y_for_1 += 15, "Плотность планеты: " + obj.density + ' кг/м^3');
+        for (var i = 0; i != texts_images.length ; i++) {
+            info_context.drawImage(texts_images[i], 0, i * font_size * 1.5);
+        };
+
+        this.info_width = max_width;
+
+        return info_canvas;
+    };
+
+    this.info_image = this.mk_info_image('Green', 10);
+
+    this.show_info = function(obj, y_for_1){
+        drawText(this.info_width, 100, obj.type + ' ' + obj.name, 'Green', 10);
+        drawText(this.info_width, 115, (obj.X * distance_suffix) + 'м, y=' + (obj.Y * distance_suffix) + 'м', 'Green', 10);
+        drawText(this.info_width, 130, (obj.speedX * distance_suffix) + 'м, y=' + (obj.speedY * distance_suffix) + 'м', 'Green', 10);
+        drawText(this.info_width, 145, (obj.radius * distance_suffix) + 'м', 'Green', 10);
+        drawText(this.info_width, 160, (obj.mass * mass_suffix) + ' кг', 'Green', 10);
+
+        drawText(this.info_width, 175, obj.g + ' м/с^2');
+        drawText(this.info_width, 190, obj.density + ' кг/м^3');
     };
 
     this.draw = function(){
@@ -45,11 +75,16 @@ function SolarSystem(bodies){
             this.bodies[i].draw_speed(this.centerX, this.centerY, this.lenScale);
             this.bodies[i].draw_name(this.centerX, this.centerY, this.lenScale);
         }
-        drawText(5, 15, "Масштаб времени: " + this.timeScale, 'Green', 10);
-        drawText(5, 30, "Количество пройденных циклов:  " + this.cycle_num, 'Green', 10);
-        drawText(5, 45, "Последний раз столкновение было:  " + this.last_impact_date, 'Green', 10);
-        drawText(5, 60, "Количество пропускаемых кадров:" + count_skips);
+        // неоптимизированное
+        drawText(this.info_width, 25, this.timeScale, 'Green', 10);
+        drawText(this.info_width, 40, this.cycle_num, 'Green', 10);
+        drawText(this.info_width, 55, this.last_impact_date, 'Green', 10);
+        drawText(this.info_width, 70, count_skips);
+
         this.show_info(this.bodies[this.focus_object], 75);
+
+        // оптимизированное
+        context.drawImage(this.info_image, 10, 10);
     };
 
     this.calc_acceleration = function(){
